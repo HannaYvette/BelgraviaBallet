@@ -1,0 +1,146 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import landingBackground from "../assets/01.jpg";
+import landingStudio from "../assets/02.jpg";
+import hannahPortrait from "../assets/Profile-Hannah.jpg";
+import rachelPortrait from "../assets/Profile-Rachel.jpg";
+
+const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title="Belgravia Ballet School | Premium Ballet Training"
+  description="Belgravia Ballet School offers premium ballet training for children and adults, balancing technique, theatrical expression, warmth, and highly professional teaching."
+  backgroundImage={landingBackground.src}
+  backgroundPosition="center center"
+>
+  <section class="hero">
+    <div class="">
+      <div>
+        <h1>
+          Premium ballet training,
+          <span class="accent-script">where technique and theatrical expression meet.</span>
+        </h1>
+        <p class="hero-copy">
+          Belgravia Ballet School is a polished, inclusive ballet school for families and adult students seeking
+          established credentials, expressive artistry, and a beautifully supportive environment. Co-founded by Rachel
+          Angus and Hannah Lancaster, the school combines rigorous classical discipline with warmth, confidence, and a
+          refined editorial sensibility.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href={withBase("/childrens-lessons/")}>Explore children's ballet</a>
+          <a class="button secondary" href={withBase("/adult-ballet/")}>Explore adult ballet</a>
+        </div>
+
+        <div class="stat-strip">
+          <div class="stat">
+            <strong>Premium &amp; Refined</strong>
+            high-end presentation with generous white space and a polished tone
+          </div>
+          <div class="stat">
+            <strong>Warm &amp; Inclusive</strong>
+            a cohesive school culture centred on confidence and wellbeing
+          </div>
+          <div class="stat">
+            <strong>Classical &amp; Expressive</strong>
+            strong ballet technique alongside theatrical artistry
+          </div>
+          <div class="stat">
+            <strong>Founder-Led</strong>
+            professional dancers and experienced teachers guiding each pathway
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stack">
+    <div class="feature-grid">
+
+      <article class="card">
+        <h3>Adults</h3>
+        <p class="muted">
+          Elegant coaching for adults developing technique, artistry, musicality, and confidence in a calm editorial
+          setting.
+        </p>
+        <div class="button-row">
+          <a class="button secondary" href={withBase("/adult-ballet/")}>View Adult Page</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Children</h3>
+        <p class="muted">
+          Premier training for young dancers in an environment that feels nurturing, aspirational, and highly
+          professional from the very first visit.
+        </p>
+        <div class="button-row">
+          <a class="button secondary" href={withBase("/childrens-lessons/")}>View Children's Page</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Our Promise</h3>
+        <p class="muted">
+          Specialist movement and performance experiences that celebrate stagecraft while staying grounded in strong
+          classical principles.
+        </p>
+        <div class="button-row">
+          <a class="button secondary" href={withBase("/book/?lesson=musical-theatre")}>Make An Enquiry</a>
+        </div>
+      </article>
+    </div>
+
+    <section class="teacher-grid">
+      <article class="teacher-card">
+        <img src={rachelPortrait.src} alt="Portrait of Rachel Angus." />
+        <div class="teacher-body">
+          <span class="teacher-title">Co-Founder</span>
+          <h3>Rachel Angus</h3>
+          <p class="muted">
+            Rachel helps shape the school’s premium ballet identity, bringing performance polish, classical heritage,
+            and a strong sense of expressive artistry.
+          </p>
+        </div>
+      </article>
+
+      <article class="teacher-card">
+        <img src={hannahPortrait.src} alt="Portrait of Hannah Lancaster." />
+        <div class="teacher-body">
+          <span class="teacher-title">Co-Founder</span>
+          <h3>Hannah Lancaster</h3>
+          <p class="muted">
+            Hannah’s teaching style embodies the school’s inclusive promise, pairing technical clarity with warmth,
+            reassurance, and a clear focus on student confidence.
+          </p>
+        </div>
+      </article>
+    </section>
+
+      <article class="panel">
+        <h2>What makes Belgravia Ballet School distinctive.</h2>
+        <div class="detail-grid">
+          <div class="detail">
+            <span>Our Approach</span>
+            Rigorous classical discipline balanced with expressive joy
+          </div>
+          <div class="detail">
+            <span>Our Teachers</span>
+            Professional, friendly, and highly experienced.
+          </div>
+          <div class="detail">
+            <span>Our Clients</span>
+            Children, adults, and families seeking high standards
+          </div>
+          <div class="detail">
+            <span>Environment</span>
+            Trusted, warm, and thoroughly professional
+          </div>
+        </div>
+      </article>
+
+    <div class="quote-panel">
+      <p>"A premium space where rigorous classical discipline meets expressive joy."</p>
+    </div>
+  </section>
+</BaseLayout>

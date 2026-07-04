@@ -1,0 +1,138 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import bookingBackground from "../assets/03.webp";
+
+const lessonParam = Astro.url.searchParams.get("lesson");
+
+const initialLesson =
+  lessonParam === "childrens-ballet"
+    ? "Children's ballet"
+    : lessonParam === "musical-theatre"
+      ? "Musical theatre"
+      : "Adult ballet";
+---
+
+<BaseLayout
+  title="Belgravia Ballet School | Enquire"
+  description="Enquire about adult ballet, children's ballet, or musical theatre experiences at Belgravia Ballet School."
+  backgroundImage={bookingBackground.src}
+  backgroundPosition="left center"
+>
+  <section class="hero">
+    <div class="">
+      <div>
+        <span class="eyebrow">Enquire</span>
+        <h1>
+          Begin your enquiry with
+          <span class="accent-script">Belgravia Ballet School.</span>
+        </h1>
+        <p class="hero-copy">
+          Use the form below to request information about adult ballet, children's ballet, or specialist musical
+          theatre experiences. The enquiry is kept deliberately simple and opens a pre-filled email draft so the site
+          remains easy to host as a static project.
+        </p>
+        <div class="stat-strip">
+          <div class="stat">
+            <strong>Adult ballet</strong>
+            refined coaching, artistry, and technical confidence
+          </div>
+          <div class="stat">
+            <strong>Children's ballet</strong>
+            warm, aspirational, and carefully structured training
+          </div>
+          <div class="stat">
+            <strong>Musical theatre</strong>
+            specialist performance-led movement experiences
+          </div>
+          <div class="stat">
+            <strong>Static-friendly</strong>
+            GitHub Pages compatible email-led enquiry flow
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stack">
+    <div class="panel booking-grid">
+      <div>
+        <h2>Get in touch today</h2>
+
+        <div class="booking-note">
+          <p class="muted">
+            The enquiry email currently routes to <strong>hello@belgraviadance.co.uk</strong>. Update this to the final
+            school inbox before launch if needed.
+          </p>
+        </div>
+      </div>
+
+      <form id="booking-form" data-default-lesson={initialLesson}>
+        <label>
+          Your name
+          <input name="name" type="text" placeholder="Full name" required />
+        </label>
+
+        <label>
+          Email address
+          <input name="email" type="email" placeholder="you@example.com" required />
+        </label>
+
+        <label>
+          Enquiry type
+          <select name="lessonType">
+            <option selected={initialLesson === "Adult ballet"}>Adult ballet</option>
+            <option selected={initialLesson === "Children's ballet"}>Children's ballet</option>
+            <option selected={initialLesson === "Musical theatre"}>Musical theatre</option>
+          </select>
+        </label>
+
+        <label>
+          Preferred schedule
+          <input name="timing" type="text" placeholder="Weekdays, weekends, after school, evenings..." />
+        </label>
+
+        <label>
+          Tell us more
+          <textarea
+            name="notes"
+            placeholder="Age of student if relevant, experience level, goals, preferred class type, or anything Rachel and Hannah should know."
+          ></textarea>
+        </label>
+
+        <button class="button primary" type="submit">Send Enquiry</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById("booking-form");
+
+    if (form instanceof HTMLFormElement) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const data = new FormData(form);
+        const name = String(data.get("name") ?? "").trim();
+        const email = String(data.get("email") ?? "").trim();
+        const lessonType = String(data.get("lessonType") ?? form.dataset.defaultLesson ?? "School enquiry");
+        const timing = String(data.get("timing") ?? "").trim();
+        const notes = String(data.get("notes") ?? "").trim();
+
+        const subject = encodeURIComponent(`${lessonType} enquiry from ${name}`);
+        const body = encodeURIComponent(
+          [
+            `Name: ${name}`,
+            `Email: ${email}`,
+            `Enquiry type: ${lessonType}`,
+            `Preferred schedule: ${timing || "Not specified"}`,
+            "",
+            "Additional details:",
+            notes || "None provided"
+          ].join("\n")
+        );
+
+        window.location.href = `mailto:hello@belgraviadance.co.uk?subject=${subject}&body=${body}`;
+      });
+    }
+  </script>
+</BaseLayout>
